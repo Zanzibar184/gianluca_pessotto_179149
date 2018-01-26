@@ -21,7 +21,7 @@ app.get('/prova',function (req, res) {
       return response.json();
   })
   .then(function(json){
-      console.log(json);
+        res.json(json);
   });
 
 })

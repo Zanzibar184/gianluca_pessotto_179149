@@ -16,7 +16,7 @@ function check(url, invocationParameters,  expectedResultData, expectedResultSta
         return response.json();
     })
     .then(function(json){
-        console.log(json);
+        res.json(json);
     });
 
 
