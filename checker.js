@@ -11,6 +11,14 @@ function check(url, invocationParameters,  expectedResultData, expectedResultSta
         resultDataAsExpected: null
     }
 
+    fetch('localhost:5000/count')
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(json){
+        console.log(json);
+    });
+
 
 
 }
