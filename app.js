@@ -5,6 +5,11 @@ const express = require('express'),
 const fetch = require('node-fetch');
 
 const app = express();
+
+const chekcer = require("./checker.js");
+
+chekcer("https://esame26gennaio18.herokuapp.com/count", {var :1 , let : 2});
+
 app.use(bodyParser.json());
 
 
@@ -15,16 +20,6 @@ app.get('/count',function (req, res) {
     res.json({count: 5})
 })
 
-app.get('/prova',function (req, res) {
-  fetch('localhost:5000/count')
-  .then(function(response){
-      return response.json();
-  })
-  .then(function(json){
-        res.json(json);
-  });
-
-})
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));

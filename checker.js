@@ -1,23 +1,36 @@
 
 const fetch = require('node-fetch')
 
+
 function check(url, invocationParameters,  expectedResultData, expectedResultStatus) {
 
-    const checkResult = { // this is the object you need to set and return
-        urlChecked: url,
-        resultData: null,
-        resultStatus: null,
-        statusTestPassed: null,
-        resultDataAsExpected: null
-    }
+  const checkResult = { // this is the object you need to set and return
+      urlChecked: url,
+      resultData: null,
+      resultStatus: null,
+      statusTestPassed: null,
+      resultDataAsExpected: null
+  }
 
-    fetch('localhost:5000/count')
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(json){
-        res.json(json);
-    });
+/*creo uri di richiesta*/
+  var uri = url +"?";
+  for (let e of Object.keys(invocationParameters)) {
+    uri = uri + e + "=" + invocationParameters[e] + "&";
+  }
+/**/
+
+  uri = uri.substring(0, uri.length - 1);
+  console.log(uri);
+
+
+  return fetch(uri)
+        .then(function(res) {
+            return res.json();
+
+        })
+        .then(function(json){
+          checkResult.resultDataAsExpected = compareResults(expectedResultData,json);
+        });
 
 
 
