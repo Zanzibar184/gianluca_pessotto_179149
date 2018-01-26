@@ -20,6 +20,10 @@ app.get('/count',function (req, res) {
     res.json({count: 5})
 })
 
+app.post('/check',function (req, res) {
+    res.json(checker(req.body.url,req.body.invocationParameters,req.body.expectedResultData,req.body.expectedResultStatus))
+})
+
 
 app.listen(app.get('port'), function() {
     console.log('Node app is running on port', app.get('port'));
